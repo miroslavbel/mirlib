@@ -23,7 +23,7 @@
  *
  * \return `1` if the operation will overflow, `0` otherwise
  */
-#define MIR_u_Add_WillOverflow(lhs, rhs) ((lhs) + (rhs) < (lhs) ? 1 : 0)
+#define MIR_u_Add_WillOverflow(lhs, rhs) (((lhs) + (rhs)) < (lhs) ? 1 : 0)
 
 /**
  * \brief Checks whether the subtraction of unsigned integers `lhs` and `rhs`
@@ -55,7 +55,7 @@
      *       Therefore, the result of `/` operator here is guaranteed to be    \
      *       the algebraic quotient with any fractional part discarded (a.k.a. \
      *       truncated towards zero) even prior to C99 */                      \
-    ((x) != 0 ? ((MAX) / (x) < (y)) : 0)
+    (((x) != 0u) ? ((MAX) / (x)) < (y) : 0)
 
 
 #endif /* _MIR_COMMON_ARITH_H */
