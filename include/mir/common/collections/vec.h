@@ -9,6 +9,11 @@
 
 
 #include <stddef.h> /* NULL, size_t */
+#if __STDC_VERSION__ >= 199901L
+#    include <stdint.h> /* SIZE_MAX */
+#else
+#    include <mir/stdlib/stdint.h> /* SIZE_MAX */
+#endif
 #ifndef MIR_NO_STD_ALLOCATOR
 #    include <stdlib.h> /* free, malloc */
 #endif
