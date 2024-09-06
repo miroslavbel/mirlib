@@ -4,6 +4,8 @@
 #include <stddef.h> /* NULL, size_t */
 #if __STDC_VERSION__ >= 199901L
 #    include <stdint.h> /* SIZE_MAX  */
+#else
+#    include <mir/stdlib/stdint.h> /* SIZE_MAX */
 #endif
 
 #include <mir/common/arith.h> /* MIR_u_Mul_WillOverflow */
