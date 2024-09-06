@@ -18,6 +18,7 @@
 #    include <stdlib.h> /* free, malloc */
 #endif
 
+#include <mir/common/arith.h>    /* MIR_u_Mul_WillOverflow */
 #include <mir/internal/assert.h> /* __MIR_ASSERT_MSG */
 
 
