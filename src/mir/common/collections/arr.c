@@ -20,7 +20,7 @@
  * \param      length      number of elements in array. **MAY** be `0`
  * \param      elemSize    size of element. **MAY** be `0`
  *
- * \return `0` if succeed, `1` otherwise
+ * \return \ref MIR_Arr_OK if succeed, `1` otherwise
  */
 int __MIR_Arr_InitByMallocF_impl(
     void *(*malloc_f)(size_t), void const **member_data, size_t *member_len,
@@ -39,7 +39,7 @@ int __MIR_Arr_InitByMallocF_impl(
     if (alloc_size == 0u) {
         *member_data = NULL;
         *member_len = 0;
-        return 0;
+        return MIR_Arr_OK;
     }
 
     ptr = malloc_f(alloc_size);
@@ -50,7 +50,7 @@ int __MIR_Arr_InitByMallocF_impl(
     *member_data = ptr;
     *member_len = length;
 
-    return 0;
+    return MIR_Arr_OK;
 }
 
 /**

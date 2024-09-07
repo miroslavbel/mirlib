@@ -53,6 +53,12 @@
         size_t len;                                                            \
     }
 
+/**
+ * \brief A constant indicating a successful operation on the \ref MIR_Arr
+ * struct.
+ */
+#define MIR_Arr_OK 0
+
 
 #ifdef __cplusplus
 extern "C" {
@@ -85,7 +91,7 @@ extern void __MIR_Arr_DeinitByFreeF_impl(
  * \param[out] arr     pointer to \ref MIR_Arr struct to be initialized
  * \param      length  number of elements in the array. **MAY** be `0`
  *
- * \return `0` on success; any other number indicates failure
+ * \return \ref MIR_Arr_OK on success; any other value indicates failure
  */
 #define MIR_Arr_InitByMallocF(type, mallocF, arr, length)                      \
     /* clang-format off */                                                     \
@@ -147,7 +153,7 @@ extern void __MIR_Arr_DeinitByFreeF_impl(
  * \param[out] arr    pointer to \ref MIR_Arr struct to be initialized
  * \param      length number of elements in the array. **MAY** be `0`
  *
- * \return `0` on success; any other number indicates failure
+ * \return \ref MIR_Arr_OK on success; any other value indicates failure
  *
  * \note This macros will be defined only if `MIR_NO_STD_ALLOCATOR` is not
  * defined
