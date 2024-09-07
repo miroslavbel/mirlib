@@ -21,7 +21,7 @@
  * \param         new_capacity new capacity. **MAY** be `0`
  * \param         elemSize     size of element. **MUST** be greater then `0`
  *
- * \return `0` on success; any other number indicates failure
+ * \return \ref MIR_Vec_OK on success; `1` on failure
  */
 int __MIR_Vec_ReserveByReallocF_impl(
     void *(*realloc_f)(void *, size_t), void **member_data, size_t *member_cap,
@@ -32,7 +32,7 @@ int __MIR_Vec_ReserveByReallocF_impl(
     size_t new_size;
 
     if (new_capacity <= *member_cap) {
-        return 0;
+        return MIR_Vec_OK;
     }
 
     if (MIR_u_Mul_WillOverflow(new_capacity, elemSize, SIZE_MAX) != 0) {
@@ -57,5 +57,5 @@ int __MIR_Vec_ReserveByReallocF_impl(
 
     *member_data = new_ptr;
     *member_cap = new_capacity;
-    return 0;
+    return MIR_Vec_OK;
 }

@@ -73,6 +73,12 @@
         size_t cap;                                                            \
     }
 
+/**
+ * \brief A constant indicating a successful operation on the \ref MIR_Vec
+ * struct.
+ */
+#define MIR_Vec_OK 0
+
 
 #ifdef __cplusplus
 extern "C" {
@@ -112,7 +118,7 @@ extern int __MIR_Vec_ReserveByReallocF_impl(
  * \param[in,out] vec           pointer to \ref MIR_Vec struct
  * \param         new_capacity  minimum new capacity
  *
- * \return `0` on success; any other number indicates failure
+ * \return \ref MIR_Vec_OK on success; any other value indicates failure
  */
 #define MIR_Vec_ReserveByReallocF(type, reallocF, vec, new_capacity)           \
     /* clang-format off */                                                     \
@@ -146,7 +152,7 @@ extern int __MIR_Vec_ReserveByReallocF_impl(
  * \param[out] vec      pointer to \ref MIR_Vec struct to be initalized
  * \param      capacity initial capacity
  *
- * \return `0` on success; any other number indicates failure
+ * \return \ref MIR_Vec_OK on success; any other value indicates failure
  */
 #define MIR_Vec_InitWithCapacityByReallocF(type, reallocF, vec, capacity)      \
     /* clang-format off */                                                     \
@@ -168,7 +174,7 @@ extern int __MIR_Vec_ReserveByReallocF_impl(
  * \param         elem     pointer to the element to be appended. **MUST** point
  *                         to the same type as that passed to \ref MIR_Vec macro
  *
- * \return `0` on success; any other number indicates failure
+ * \return \ref MIR_Vec_OK on success; any other value indicates failure
  */
 #define MIR_Vec_PushByReallocF(type, reallocF, vec, elem)                      \
     /* clang-format off */                                                     \
@@ -244,7 +250,7 @@ extern int __MIR_Vec_ReserveByReallocF_impl(
  * \param[in,out] vec           pointer to \ref MIR_Vec struct
  * \param         new_capacity  minimum new capacity
  *
- * \return `0` on success; any other number indicates failure
+ * \return \ref MIR_Vec_OK on success; any other value indicates failure
  */
 #    define MIR_Vec_Reserve(type, vec, new_capacity)                           \
         MIR_Vec_ReserveByReallocF(type, realloc, vec, new_capacity)
@@ -261,7 +267,7 @@ extern int __MIR_Vec_ReserveByReallocF_impl(
  * \param[out] vec      pointer to \ref MIR_Vec struct to be initalized
  * \param      capacity initial capacity
  *
- * \return `0` on success; any other number indicates failure
+ * \return \ref MIR_Vec_OK on success; any other value indicates failure
  */
 #    define MIR_Vec_InitWithCapacity(type, vec, capacity)                      \
         MIR_Vec_InitWithCapacityByReallocF(type, realloc, vec, capacity)
@@ -279,7 +285,7 @@ extern int __MIR_Vec_ReserveByReallocF_impl(
  * \param         elem pointer to the element to be appended. **MUST** point
  *                     to the same type as that passed to \ref MIR_Vec macro
  *
- * \return `0` on success; any other number indicates failure
+ * \return \ref MIR_Vec_OK on success; any other value indicates failure
  */
 #    define MIR_Vec_Push(type, vec, elem)                                      \
         MIR_Vec_PushByReallocF(type, realloc, vec, elem)
