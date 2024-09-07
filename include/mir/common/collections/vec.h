@@ -179,27 +179,48 @@ extern int __MIR_Vec_ReserveByReallocF_impl(
 #define MIR_Vec_PushByReallocF(type, reallocF, vec, elem)                      \
     /* clang-format off */                                                     \
     (                                                                          \
-        __MIR_ASSERT_MSG((elem) != NULL, "param `elem' MUST NOT be NULL"),     \
-        (                                                                      \
-            MIR_u_Mul_WillOverflow(                                            \
-                (vec)->cap, 2u, SIZE_MAX                                       \
+            (                                                                  \
+                __MIR_ASSERT_MSG((vec) != NULL, "param `vec' MUST no be NULL"),\
+                ((vec)->len < (vec)->cap)                                      \
             )                                                                  \
-                ? 1                                                            \
-                :                                                              \
-                    (                                                          \
-                        MIR_Vec_ReserveByReallocF(                             \
-                            type, reallocF, vec,                               \
-                            ((vec)->cap == 0u) ? 1u : ((vec)->cap * 2u)        \
+        ?                                                                      \
+            (                                                                  \
+                __MIR_ASSERT_MSG(                                              \
+                    (elem) != NULL, "param `elem' MUST NOT be NULL"            \
+                ),                                                             \
+                __MIR_ASSERT_MSG(                                              \
+                    sizeof(type) > 0u, "`sizeof(type)' MUST be greater then 0" \
+                ),                                                             \
+                __MIR_ASSERT_MSG(                                              \
+                    (reallocF) != NULL, "param `reallocF' MUST not be NULL"    \
+                ),                                                             \
+                __MIR_ASSERT_MSG(                                              \
+                    ((vec)->cap == 0u) ? ((vec)->data == NULL) : 1,            \
+                    "if `vec->cap == 0' then `vec->data' MUST be NULL"         \
+                ),                                                             \
+                (vec)->data[(vec)->len] = *(elem),                             \
+                ++((vec)->len),                                                \
+                MIR_Vec_OK                                                     \
+            )                                                                  \
+        :                                                                      \
+                (                                                              \
+                        MIR_u_Mul_WillOverflow((vec)->cap, 2u, SIZE_MAX)       \
+                    ?   1                                                      \
+                    :                                                          \
+                        (                                                      \
+                            MIR_Vec_ReserveByReallocF(                         \
+                                type, reallocF, vec,                           \
+                                ((vec)->cap == 0u) ? 1u : ((vec)->cap * 2u)    \
+                            )                                                  \
+                            == 1                                               \
                         )                                                      \
-                        == 1                                                   \
-                    )                                                          \
-        )                                                                      \
-            ? 1                                                                \
+                )                                                              \
+            ?   1                                                              \
             :                                                                  \
                 (                                                              \
                     (vec)->data[(vec)->len] = *(elem),                         \
                     ++((vec)->len),                                            \
-                    0                                                          \
+                    MIR_Vec_OK                                                 \
                 )                                                              \
     ) /* clang-format on */
 
