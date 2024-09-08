@@ -56,6 +56,11 @@
  *     library `realloc` function
  *   - \ref MIR_Vec_InitWithCapacityByReallocF - with given capacity by using
  *     provided realloc-like function
+ * + get
+ *   - \ref MIR_Vec_Get - the element
+ *   - \ref MIR_Vec_GetPtr - a pointer to the element
+ * + set
+ *   - \ref MIR_Vec_Set - the element
  * + reserve
  *   - \ref MIR_Vec_Reserve - by using standard library `realloc` function
  *   - \ref MIR_Vec_ReserveByReallocF - by using provided realloc-like function
@@ -94,6 +99,60 @@ extern int __MIR_Vec_ReserveByReallocF_impl(
 #ifdef __cplusplus
 }
 #endif
+
+
+/**
+ * \brief Returns the element at the specified index.
+ *
+ * \param[in] vec   pointer to \ref MIR_Vec struct
+ * \param     index index of the element to be returned
+ *
+ * \return element at the specified index
+ */
+#define MIR_Vec_Get(vec, index)                                                \
+    /* clang-format off */                                                     \
+    (                                                                          \
+        __MIR_ASSERT_MSG(                                                      \
+            (index) < (vec)->len,                                              \
+            "OOB: param `index' MUST be less than (vec)->len"                  \
+        ),                                                                     \
+        (vec)->data[(index)]                                                   \
+    ) /* clang-format on */
+
+/**
+ * \brief Returns a pointer to the element at the specified index.
+ *
+ * \param[in] vec   pointer to \ref MIR_Vec struct
+ * \param     index index of the element whose pointer is to be returned
+ *
+ * \return pointer to the element at the specified index
+ */
+#define MIR_Vec_GetPtr(vec, index)                                             \
+    /* clang-format off */                                                     \
+    (                                                                          \
+        __MIR_ASSERT_MSG(                                                      \
+            (index) < (vec)->len,                                              \
+            "OOB: param `index' MUST be less than (vec)->len"                  \
+        ),                                                                     \
+        &(vec)->data[(index)]                                                  \
+    ) /* clang-format on */
+
+/**
+ * \brief Sets the element at the specified index.
+ *
+ * \param[out] vec   pointer to \ref MIR_Vec struct
+ * \param      index index of the element to be set
+ * \param      elem  element to set at the specified index
+ */
+#define MIR_Vec_Set(vec, index, elem)                                          \
+    /* clang-format off */                                                     \
+    (                                                                          \
+        __MIR_ASSERT_MSG(                                                      \
+            (index) < (vec)->len,                                              \
+            "OOB: param `index' MUST be less than (vec)->len"                  \
+        ),                                                                     \
+        (vec)->data[(index)] = (elem)                                          \
+    ) /* clang-format on */
 
 /**
  * \brief Init vector with zero capacity.
