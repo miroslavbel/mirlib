@@ -169,7 +169,7 @@ extern int __MIR_Vec_ReserveByReallocF_impl(
  * \brief Reserves enough space to hold at least `new_capacity` items by using
  * provided realloc-like function.
  *
- * \details Does nothing if `new_capacity` is equal or less then `arr->cap`.
+ * \details Does nothing if `new_capacity` is equal or less then `vec->cap`.
  *
  * \param         type          type of elements. **MUST** be the same type as
  *                              that passed to \ref MIR_Vec macro
