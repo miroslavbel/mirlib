@@ -43,6 +43,11 @@
  * + initialization
  *   - \ref MIR_Arr_Init - by standard library `malloc` function
  *   - \ref MIR_Arr_InitByMallocF - by given malloc-like function
+ * + get
+ *   - \ref MIR_Arr_Get - the element
+ *   - \ref MIR_Arr_GetPtr - a pointer to the element
+ * + set
+ *   - \ref MIR_Arr_Set - the element
  * + deinitialization
  *   - \ref MIR_Arr_Deinit - by standard library `free` function
  *   - \ref MIR_Arr_DeinitByFreeF - by given free-like function
@@ -79,6 +84,59 @@ extern void __MIR_Arr_DeinitByFreeF_impl(
 }
 #endif
 
+
+/**
+ * \brief Returns the element at the specified index.
+ *
+ * \param[in] arr   pointer to \ref MIR_Arr struct
+ * \param     index index of the element to be returned
+ *
+ * \return element at the specified index
+ */
+#define MIR_Arr_Get(arr, index)                                                \
+    /* clang-format off */                                                     \
+    (                                                                          \
+        __MIR_ASSERT_MSG(                                                      \
+            (index) < (arr)->len,                                              \
+            "OOB: param `index' MUST be less than (arr)->len"                  \
+        ),                                                                     \
+        (arr)->data[(index)]                                                   \
+    ) /* clang-format on */
+
+/**
+ * \brief Returns a pointer to the element at the specified index.
+ *
+ * \param[in] arr   pointer to \ref MIR_Arr struct
+ * \param     index index of the element whose pointer is to be returned
+ *
+ * \return pointer to the element at the specified index
+ */
+#define MIR_Arr_GetPtr(arr, index)                                             \
+    /* clang-format off */                                                     \
+    (                                                                          \
+        __MIR_ASSERT_MSG(                                                      \
+            (index) < (arr)->len,                                              \
+            "OOB: param `index' MUST be less than (arr)->len"                  \
+        ),                                                                     \
+        &(arr)->data[(index)]                                                  \
+    ) /* clang-format on */
+
+/**
+ * \brief Sets the element at the specified index.
+ *
+ * \param[out] arr   pointer to \ref MIR_Arr struct
+ * \param      index index of the element to be set
+ * \param      elem  element to set at the specified index
+ */
+#define MIR_Arr_Set(arr, index, elem)                                          \
+    /* clang-format off */                                                     \
+    (                                                                          \
+        __MIR_ASSERT_MSG(                                                      \
+            (index) < (arr)->len,                                              \
+            "OOB: param `index' MUST be less than (arr)->len"                  \
+        ),                                                                     \
+        (arr)->data[(index)] = (elem)                                          \
+    ) /* clang-format on */
 
 /**
  * \brief Inits \ref MIR_Arr struct using giving malloc-like function as an
