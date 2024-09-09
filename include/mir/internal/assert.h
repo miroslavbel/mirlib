@@ -5,7 +5,7 @@
 #include <mir/common/assert.h>
 
 
-#if defined(NDEBUG) || defined(NDEBUG_MIR)
+#if defined(NDEBUG) || defined(MIR_NDEBUG)
 #    define __MIR_ASSERT(expr) ((void)0)
 #    define __MIR_ASSERT_MSG(expr, msg) ((void)0)
 #else
