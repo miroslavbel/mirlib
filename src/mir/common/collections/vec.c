@@ -13,13 +13,14 @@
  * \brief Reserves enough space to hold at least `new_capacity` items using
  * giving realloc-like function.
  *
- * \details Does nothing if `new_capacity` is equal or less then `*member_cap`.
+ * \details Does nothing if `new_capacity` is equal to or less than
+ * `*member_cap`.
  *
  * \param[in]     realloc_f    realloc-like function to be used
  * \param[in,out] member_data  pointer to `data` member
  * \param[in,out] member_cap   pointer to `cap` member
  * \param         new_capacity new capacity. **MAY** be `0`
- * \param         elemSize     size of element. **MUST** be greater then `0`
+ * \param         elemSize     size of element. **MUST** be greater than `0`
  *
  * \return \ref MIR_Vec_OK on success; `1` on failure
  */
