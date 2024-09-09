@@ -169,7 +169,7 @@ extern int __MIR_Vec_ReserveByReallocF_impl(
  * \brief Reserves enough space to hold at least `new_capacity` items by using
  * provided realloc-like function.
  *
- * \details Does nothing if `new_capacity` is equal or less then `vec->cap`.
+ * \details Does nothing if `new_capacity` is equal to or less than `vec->cap`.
  *
  * \param         type          type of elements. **MUST** be the same type as
  *                              that passed to \ref MIR_Vec macro
@@ -184,7 +184,7 @@ extern int __MIR_Vec_ReserveByReallocF_impl(
     (                                                                          \
         (                                                                      \
             __MIR_ASSERT_MSG(                                                  \
-                sizeof(type) > 0u, "`sizeof(type)' MUST be greater then 0"     \
+                sizeof(type) > 0u, "`sizeof(type)' MUST be greater than 0"     \
             ),                                                                 \
             __MIR_ASSERT_MSG(                                                  \
                 (reallocF) != NULL, "param `reallocF' MUST not be NULL"        \
@@ -248,7 +248,7 @@ extern int __MIR_Vec_ReserveByReallocF_impl(
                     (elem) != NULL, "param `elem' MUST NOT be NULL"            \
                 ),                                                             \
                 __MIR_ASSERT_MSG(                                              \
-                    sizeof(type) > 0u, "`sizeof(type)' MUST be greater then 0" \
+                    sizeof(type) > 0u, "`sizeof(type)' MUST be greater than 0" \
                 ),                                                             \
                 __MIR_ASSERT_MSG(                                              \
                     (reallocF) != NULL, "param `reallocF' MUST not be NULL"    \

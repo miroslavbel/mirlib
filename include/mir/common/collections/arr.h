@@ -157,7 +157,7 @@ extern void __MIR_Arr_DeinitByFreeF_impl(
         (                                                                      \
             __MIR_ASSERT_MSG(                                                  \
                 sizeof(type) > 0u,                                             \
-                "`sizeof(type)' MUST be greater then 0"                        \
+                "`sizeof(type)' MUST be greater than 0"                        \
             ),                                                                 \
             __MIR_ASSERT_MSG((arr) != NULL, "param `arr' MUST NOT be NULL"),   \
             __MIR_ASSERT_MSG(                                                  \
@@ -222,7 +222,7 @@ extern void __MIR_Arr_DeinitByFreeF_impl(
             (                                                                  \
                 __MIR_ASSERT_MSG(                                              \
                     sizeof(type) > 0u,                                         \
-                    "`sizeof(type)' MUST be greater then 0"                    \
+                    "`sizeof(type)' MUST be greater than 0"                    \
                 ),                                                             \
                 __MIR_ASSERT_MSG(                                              \
                     (arr) != NULL,                                             \
