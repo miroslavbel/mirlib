@@ -4,6 +4,22 @@
  * \brief Highly-used macros
  */
 
+
+#ifndef _MIR_COMMON_MACROS_H_
+#define _MIR_COMMON_MACROS_H_
+
+
+/**
+ * \brief Checks that \a x is in the range `[min..max]` (both inclusive).
+ *
+ * \param x   value to check
+ * \param min minumum value (inclusive)
+ * \param max maximum value (inclusive)
+ *
+ * \return \a 1 if \a x is in range, \a 0 otherwise
+ */
+#define MIR_InRange(x, min, max) ((min) <= (x) && (x) <= (max))
+
 /**
  * \brief Iterates through a range of elements within an array.
  *
@@ -55,3 +71,6 @@
  * \endcode
  */
 #define MIR_FOREACH(arr, len, i, elem) MIR_FOREACH_RANGE (arr, 0, len, i, elem)
+
+
+#endif /* _MIR_COMMON_MACROS_H_ */
