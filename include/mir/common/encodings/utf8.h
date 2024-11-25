@@ -14,8 +14,6 @@
 /**
  * \brief UTF-8 BOM as a string literal.
  *
- * \details TODO
- *
  * \see \ref MIR_UTF8_BOM_BLEN - for length in bytes
  */
 #define MIR_UTF8_BOM_STR "\xEF\xBB\xBF"
