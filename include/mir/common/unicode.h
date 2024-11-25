@@ -15,7 +15,7 @@
 /**
  * \brief Unicode code point.
  */
-typedef char32_t M3C_UCP;
+typedef char32_t MIR_UCP;
 
 #else /* __STDC_VERSION__ */
 
@@ -23,7 +23,7 @@ typedef char32_t M3C_UCP;
 /**
  * \brief Unicode code point.
  */
-typedef int_least32_t M3C_UCP;
+typedef uint_least32_t MIR_UCP;
 
 #endif /* __STDC_VERSION__ */
 

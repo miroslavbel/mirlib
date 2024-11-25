@@ -11,7 +11,7 @@ struct ByteRange {
     unsigned char hi;
 };
 
-int MIR_UTF8_BufIter_Next(struct MIR_UTF8_BufIter *iter, M3C_UCP *cp) {
+int MIR_UTF8_BufIter_Next(struct MIR_UTF8_BufIter *iter, MIR_UCP *cp) {
     const struct ByteRange *byteRange;
     unsigned int n;
     unsigned int mask;
