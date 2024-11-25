@@ -110,7 +110,7 @@ struct MIR_UTF8_BufIter {
      * \details Replacement value to use when ill-formed code unit sequence
      * is encountered. Usually \ref MIR_REPLACEMENT_CHARACTER_CP is used.
      */
-    M3C_UCP replVal;
+    MIR_UCP replVal;
 
     /**
      * \brief EOF sentinel value.
@@ -125,7 +125,7 @@ struct MIR_UTF8_BufIter {
      * point which implies that \c WEOF is indistinguishable from a valid
      * Unicode code point.
      */
-    M3C_UCP eofVal;
+    MIR_UCP eofVal;
 };
 
 #ifdef __cplusplus
@@ -175,7 +175,7 @@ extern "C" {
  *           "iter->replVal") to \a cp
  * + \c  0 - on success
  */
-extern int MIR_UTF8_BufIter_Next(struct MIR_UTF8_BufIter *iter, M3C_UCP *cp);
+extern int MIR_UTF8_BufIter_Next(struct MIR_UTF8_BufIter *iter, MIR_UCP *cp);
 
 /**
  * \brief Skips BOM (if any).
