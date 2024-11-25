@@ -23,7 +23,7 @@ typedef char32_t MIR_UCP;
 /**
  * \brief Unicode code point.
  */
-typedef int_least32_t MIR_UCP;
+typedef uint_least32_t MIR_UCP;
 
 #endif /* __STDC_VERSION__ */
 
