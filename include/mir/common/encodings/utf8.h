@@ -73,6 +73,7 @@
  * ## Interface
  *
  * + \ref MIR_UTF8_BufIter_SkipBOM - to skip BOM (if any)
+ * + \ref MIR_UTF8_BufIter_PeekNext - to peek the next code point
  * + \ref MIR_UTF8_BufIter_Next - to get the next code point
  */
 struct MIR_UTF8_BufIter {
@@ -174,6 +175,23 @@ extern "C" {
  * + \c  0 - on success
  */
 extern int MIR_UTF8_BufIter_Next(struct MIR_UTF8_BufIter *iter, MIR_UCP *cp);
+
+/**
+ * \brief Peeks the next code point without advancing the iterator.
+ *
+ * \details It calls \ref MIR_UTF8_BufIter_Next internally. See it for details.
+ *
+ * \note Param \a iter is not declared as a pointer to const because the
+ * function may modify it, but it is guaranteed to be restored to its original
+ * state after the function completes.
+ *
+ * \param[in,out] iter    pointer to iterator
+ * \param[out]    pointer where the next code will be written
+ *
+ * \return see \ref MIR_UTF8_BufIter_Next
+ */
+extern int
+MIR_UTF8_BufIter_PeekNext(struct MIR_UTF8_BufIter *iter, MIR_UCP *cp);
 
 /**
  * \brief Skips BOM (if any).
