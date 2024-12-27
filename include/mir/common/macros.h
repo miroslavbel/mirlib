@@ -73,4 +73,15 @@
 #define MIR_FOREACH(arr, len, i, elem) MIR_FOREACH_RANGE (arr, 0, len, i, elem)
 
 
+#if defined __STDC_VERSION__ && __STDC_VERSION__ < 199901L
+
+/* NOTE: tcc (`__TINYC__') only supports C99 and C11 standards, where `restrict'
+ *       is already a keyword, so ignoring it here                            */
+#    if defined(__clang__) || defined(__GNUC__) || defined(_MSC_VER)
+#        define restrict __restrict
+#    else
+#        define restrict /* ignore `restrict' */
+#    endif
+#endif
+
 #endif /* _MIR_COMMON_MACROS_H_ */

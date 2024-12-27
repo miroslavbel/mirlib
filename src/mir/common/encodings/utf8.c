@@ -3,7 +3,7 @@
 #include <stddef.h> /* NULL */
 
 #include <mir/common/macros.h>
-#include <mir/common/assert.h> /* _MIR_ASSERT_MSG */
+#include <mir/internal/assert.h> /* __MIR_ASSERT_MSG */
 
 
 struct ByteRange {
@@ -22,6 +22,9 @@ int MIR_UTF8_BufIter_Next(struct MIR_UTF8_BufIter *iter, MIR_UCP *cp) {
         {0x90, 0xBF},
         {0x80, 0x8F}
     };
+
+    __MIR_ASSERT_MSG(iter != NULL, "param `iter' MUST not be NULL");
+    __MIR_ASSERT_MSG(cp != NULL, "param `cp' MUST not be NULL");
 
     if (iter->lim <= iter->cur) {
         *cp = iter->eofVal;
@@ -104,8 +107,21 @@ int MIR_UTF8_BufIter_Next(struct MIR_UTF8_BufIter *iter, MIR_UCP *cp) {
     return 0;
 }
 
+int MIR_UTF8_BufIter_PeekNext(struct MIR_UTF8_BufIter *iter, MIR_UCP *cp) {
+    unsigned char const *cur;
+    int res;
+
+    __MIR_ASSERT_MSG(iter != NULL, "param `iter' MUST NOT be NULL");
+
+    cur = iter->cur;
+    res = MIR_UTF8_BufIter_Next(iter, cp);
+    iter->cur = cur;
+
+    return res;
+}
+
 int MIR_UTF8_BufIter_SkipBOM(struct MIR_UTF8_BufIter *iter) {
-    _MIR_ASSERT_MSG(
+    __MIR_ASSERT_MSG(
         iter->cur == iter->buf,
         "iter::cur does not point to the start of the buffer"
     );
